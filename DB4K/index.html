@@ -6,7 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#00878F">
   <link rel="icon" href="img/db4kimages/icon_db4k.ico"> 
-  <script src="script.js"></script>
+  <script>
+    // Função para iniciar o arquivo start.py
+    function iniciarStartPy() {
+      // Cria uma solicitação HTTP GET para o arquivo start.py
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '')
+      xhr.open('GET', 'start.py', true); // Substitua '/caminho/para/start.py' pelo caminho correto
+      xhr.send();
+    }
+  
+    // Chama a função iniciarStartPy quando a página é carregada
+    window.addEventListener('load', iniciarStartPy);
+  </script>
+  
   <title class="translatable_title">MyMaker</title>
 
   <script src="db4k_setup.js"></script>
