@@ -24,19 +24,19 @@ SERVER_IP = 'localhost'
 SERVER_PORT = 8001
 
 
-# def open_browser(ip, port, file_path=''):
-#     """Start a browser in a separate thread after waiting for half a second.
+def open_browser(ip, port, file_path=''):
+    """Start a browser in a separate thread after waiting for half a second.
 
-#     :param ip: IP address or host name to build URL.
-#     :param port: Server port to build the URL.
-#     :param file_path: Path within domain for the browser to open.
-#     :return: None.
-#     """
-#     def _open_browser():
-#         webbrowser.get().open('http://%s:%s/%s' % (ip, port, file_path))
+    :param ip: IP address or host name to build URL.
+    :param port: Server port to build the URL.
+    :param file_path: Path within domain for the browser to open.
+    :return: None.
+    """
+    def _open_browser():
+        webbrowser.get().open('http://%s:%s/%s' % (ip, port, file_path))
 
-#     thread = threading.Timer(0.5, _open_browser)
-#     thread.start()
+    thread = threading.Timer(0.5, _open_browser)
+    thread.start()
 
 #**************************************************************************
 #Modified by RLQ DB4K  - Modified dir name ardublockly - DB4K
@@ -128,10 +128,10 @@ def parsing_cl_args():
             else:
                 print('Flag "%s" not recognised.' % opt)
 
-    return find_project_root, server_root
+    return find_project_root, launch_browser, server_root
 
 
-def main(ip, port):
+def main():
     """Entry point for the application.
 
     Initialises the Settings singleton, resolves paths, and starts the server.
@@ -181,15 +181,12 @@ def main(ip, port):
         ardublockly_root_dir)
 
     print('\n======= Starting Server =======')
-    # if launch_browser:
-    #     open_browser(ip=SERVER_IP, port=SERVER_PORT)
+    if launch_browser:
+        open_browser(ip=SERVER_IP, port=SERVER_PORT)
 
     ardublocklyserver.server.launch_server(
             ip=SERVER_IP, port=SERVER_PORT, document_root_=server_root)
 
   #----------------------------------------------------------------------------
 if __name__ == '__main__':
-    ip = SERVER_IP
-    port = SERVER_PORT
-    main(ip, port)
-
+    main()
